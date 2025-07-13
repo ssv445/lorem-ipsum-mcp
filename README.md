@@ -27,6 +27,12 @@ lorem-ipsum-mcp
 npx lorem-ipsum-mcp
 ```
 
+The HTTP server runs on `http://localhost:3001` with the SSE endpoint at `http://localhost:3001/sse`.
+
+## Testing
+
+This project includes comprehensive automated testing using GitHub Actions. For detailed testing information, see [docs/TESTING.md](docs/TESTING.md).
+
 ## Available Tools
 
 ### image

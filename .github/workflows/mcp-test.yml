@@ -1,5 +1,11 @@
 name: MCP Server Test
 
+# This workflow tests the MCP server functionality using various methods
+# To enable full testing with ANTHROPIC_API_KEY:
+# 1. Go to repository Settings > Secrets and variables > Actions
+# 2. Create a new repository secret named ANTHROPIC_API_KEY
+# 3. Add your Anthropic API key as the value
+
 on:
   push:
     branches: [ main ]
