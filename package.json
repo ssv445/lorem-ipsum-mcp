@@ -4,7 +4,9 @@
   "type": "module",
   "version": "1.0.0",
   "description": "Model Context Protocol (MCP) Server",
-  "private": true,
+  "bin": {
+    "mcp-server": "./dist/index.js"
+  },
   "scripts": {
     "start": "node --loader ts-node/esm src/index.ts",
     "build": "tsc",

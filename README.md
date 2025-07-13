@@ -1,6 +1,32 @@
 # lorem-ipsum-mcp
 An lorem ipsum MCP server
 
+## Installation
+
+Install the package globally with npm:
+
+```bash
+npm install -g mcp-server
+```
+
+Or run directly with npx:
+
+```bash
+npx mcp-server
+```
+
+## Usage
+
+The MCP server runs on stdio and is designed to be used as a Model Context Protocol server:
+
+```bash
+# Run directly if installed globally
+mcp-server
+
+# Run with npx (no installation required)
+npx mcp-server
+```
+
 ## Available Tools
 
 ### image
