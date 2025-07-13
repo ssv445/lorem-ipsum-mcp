@@ -6,39 +6,6 @@ import * as services from "./services/index.js";
  * @param server The FastMCP server instance
  */
 export function registerTools(server) {
-    // Hello tool that responds with "world"
-    server.addTool({
-        name: "hello",
-        description: "Replies with 'world'",
-        parameters: z.object({}),
-        execute: async () => {
-            return "world";
-        },
-    });
-    // Greeting tool
-    server.addTool({
-        name: "hello_world",
-        description: "A simple hello world tool",
-        parameters: z.object({
-            name: z.string().describe("Name to greet")
-        }),
-        execute: async (params) => {
-            const greeting = services.GreetingService.generateGreeting(params.name);
-            return greeting;
-        }
-    });
-    // Farewell tool
-    server.addTool({
-        name: "goodbye",
-        description: "A simple goodbye tool",
-        parameters: z.object({
-            name: z.string().describe("Name to bid farewell to")
-        }),
-        execute: async (params) => {
-            const farewell = services.GreetingService.generateFarewell(params.name);
-            return farewell;
-        }
-    });
     // Image tool powered by picsum.photos
     server.addTool({
         name: "image",

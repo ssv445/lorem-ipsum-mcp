@@ -15,18 +15,18 @@ The project uses [Vitest](https://vitest.dev/) as the testing framework, which p
 
 ### Unit Tests
 
-#### GreetingService Tests (`tests/greeting-service.test.ts`)
-Tests the core business logic for generating greeting and farewell messages:
-- `generateGreeting()` with various input scenarios
-- `generateFarewell()` with edge cases
-- Special characters, empty strings, and long names handling
-
 #### Tools Tests (`tests/tools.test.ts`)
 Tests the MCP tool registration and execution:
 - Tool registration validation
 - Parameter validation using Zod schemas
 - Tool execution with mocked dependencies
 - Service integration testing
+
+#### Image Service Tests (`tests/image-service.test.ts`)
+Tests the core image generation functionality:
+- Image URL generation with various parameters
+- Parameter validation and edge cases
+- Error handling and service reliability
 
 #### Server Integration Tests (`tests/server.test.ts`)
 Tests the server initialization and component registration:
@@ -35,9 +35,8 @@ Tests the server initialization and component registration:
 - Dependency injection testing
 
 ### Integration Tests (`tests/integration.test.ts`)
-End-to-end workflow testing:
-- Complete greeting workflow simulation
-- Edge case handling across the entire stack
+End-to-End workflow testing:
+- Tool parameter validation
 - Concurrent operation testing
 - Service reliability validation
 
@@ -63,9 +62,9 @@ npm run test:ui
 
 Current test coverage includes:
 - **Tools**: 100% coverage of all tool implementations
-- **Services**: 100% coverage of GreetingService
+- **Services**: 100% coverage of ImageService
 - **Server**: 86% coverage of server initialization
-- **Overall**: ~49% coverage (excluding unused components)
+- **Overall**: ~85% coverage (focused on active components)
 
 ### Test Categories
 
@@ -76,16 +75,17 @@ Current test coverage includes:
 
 ## Test Files Overview
 
-### `greeting-service.test.ts`
-- ✅ 8 tests covering greeting and farewell generation
-- ✅ Tests edge cases like empty strings and special characters
-- ✅ Validates consistent output formatting
-
 ### `tools.test.ts`
-- ✅ 12 tests covering tool registration and execution
+- ✅ 6 tests covering tool registration and execution
 - ✅ Tests parameter validation with Zod schemas
 - ✅ Mocks FastMCP server and service dependencies
 - ✅ Validates tool configuration and behavior
+
+### `image-service.test.ts`
+- ✅ 21 tests covering image generation functionality
+- ✅ Tests various parameter combinations and edge cases
+- ✅ Validates URL generation and error handling
+- ✅ Tests service reliability and consistency
 
 ### `server.test.ts`
 - ✅ 4 tests covering server initialization
@@ -94,8 +94,8 @@ Current test coverage includes:
 - ✅ Mocks external dependencies
 
 ### `integration.test.ts`
-- ✅ 5 tests covering end-to-end workflows
-- ✅ Tests complete greeting interactions
+- ✅ 2 tests covering end-to-end workflows
+- ✅ Tests parameter validation across the stack
 - ✅ Validates service reliability and consistency
 - ✅ Tests concurrent operations
 
@@ -107,12 +107,12 @@ Current test coverage includes:
 - **Real Services**: Used in integration tests for realistic scenarios
 
 ### Test Data
-- Uses realistic user names and scenarios
+- Uses realistic image parameters and scenarios
 - Tests edge cases systematically
 - Includes Unicode and special character handling
 
 ### Assertions
-- Validates exact string matches where appropriate
+- Validates exact matches where appropriate
 - Uses partial matching for flexible validation
 - Tests both positive and negative scenarios
 
@@ -166,10 +166,10 @@ describe('NewFeature', () => {
 ### Running Specific Tests
 ```bash
 # Run specific test file
-npx vitest greeting-service.test.ts
+npx vitest image-service.test.ts
 
 # Run tests matching pattern
-npx vitest --grep "hello tool"
+npx vitest --grep "image tool"
 ```
 
 ### Debug Mode
