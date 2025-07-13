@@ -25,7 +25,7 @@ describe('Tools Registration', () => {
   it('should register all tools with the server', () => {
     registerTools(mockServer);
 
-    expect(mockAddTool).toHaveBeenCalledTimes(3);
+    expect(mockAddTool).toHaveBeenCalledTimes(4);
   });
 
   it('should register hello tool correctly', () => {
@@ -75,6 +75,22 @@ describe('Tools Registration', () => {
       execute: expect.any(Function)
     });
   });
+
+  it('should register image tool correctly', () => {
+    registerTools(mockServer);
+
+    const imageToolCall = mockAddTool.mock.calls.find(
+      call => call[0].name === 'image'
+    );
+
+    expect(imageToolCall).toBeDefined();
+    expect(imageToolCall[0]).toMatchObject({
+      name: 'image',
+      description: 'Generate or fetch images from picsum.photos with various options',
+      parameters: expect.any(Object),
+      execute: expect.any(Function)
+    });
+  });
 });
 
 describe('Tool Execution', () => {
@@ -82,12 +98,14 @@ describe('Tool Execution', () => {
   let helloTool: any;
   let helloWorldTool: any;
   let goodbyeTool: any;
+  let imageTool: any;
 
   beforeEach(() => {
     const mockAddTool = vi.fn((tool) => {
       if (tool.name === 'hello') helloTool = tool;
       else if (tool.name === 'hello_world') helloWorldTool = tool;
       else if (tool.name === 'goodbye') goodbyeTool = tool;
+      else if (tool.name === 'image') imageTool = tool;
     });
 
     mockServer = {
@@ -99,6 +117,10 @@ describe('Tool Execution', () => {
       .mockReturnValue('Mocked greeting');
     (services.GreetingService.generateFarewell as any) = vi.fn()
       .mockReturnValue('Mocked farewell');
+
+    // Mock the ImageService
+    (services.ImageService.generateImage as any) = vi.fn()
+      .mockResolvedValue('Mocked image result');
 
     registerTools(mockServer);
   });
@@ -171,6 +193,62 @@ describe('Tool Execution', () => {
 
       expect(validValidation.success).toBe(true);
       expect(invalidValidation.success).toBe(false);
+    });
+  });
+
+  describe('image tool', () => {
+    it('should call ImageService.generateImage with correct parameters', async () => {
+      const params = { width: 200, height: 300, output: 'url' as const };
+      
+      await imageTool.execute(params);
+      
+      expect(services.ImageService.generateImage).toHaveBeenCalledWith(params);
+    });
+
+    it('should return the result from ImageService', async () => {
+      const params = { width: 200, height: 300 };
+      
+      const result = await imageTool.execute(params);
+      
+      expect(result).toBe('Mocked image result');
+    });
+
+    it('should validate parameters correctly', () => {
+      const validParams = { width: 200, height: 300 };
+      const validParamsWithOptional = { 
+        width: 200, 
+        height: 300, 
+        id: 'test', 
+        seed: 'test-seed',
+        grayscale: true,
+        blur: 5,
+        format: 'jpg' as const,
+        output: 'file' as const,
+        list: false,
+        page: 1,
+        limit: 10,
+        info: false
+      };
+      const invalidBlurParams = { width: 200, height: 300, blur: 15 };
+      const invalidFormatParams = { width: 200, height: 300, format: 'png' };
+
+      const validValidation = imageTool.parameters.safeParse(validParams);
+      const validValidationWithOptional = imageTool.parameters.safeParse(validParamsWithOptional);
+      const invalidBlurValidation = imageTool.parameters.safeParse(invalidBlurParams);
+      const invalidFormatValidation = imageTool.parameters.safeParse(invalidFormatParams);
+
+      expect(validValidation.success).toBe(true);
+      expect(validValidationWithOptional.success).toBe(true);
+      expect(invalidBlurValidation.success).toBe(false);
+      expect(invalidFormatValidation.success).toBe(false);
+    });
+
+    it('should have proper default for output parameter', () => {
+      const params = { width: 200 };
+      const validation = imageTool.parameters.safeParse(params);
+      
+      expect(validation.success).toBe(true);
+      expect(validation.data.output).toBe('url');
     });
   });
 });
