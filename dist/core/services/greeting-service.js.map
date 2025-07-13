@@ -1,0 +1,1 @@
+{"version":3,"file":"greeting-service.js","sourceRoot":"","sources":["../../../src/core/services/greeting-service.ts"],"names":[],"mappings":"AAAA;;GAEG;AACH,MAAM,OAAO,eAAe;IAC1B;;;;OAIG;IACI,MAAM,CAAC,gBAAgB,CAAC,IAAY;QACzC,OAAO,UAAU,IAAI,8BAA8B,CAAC;IACtD,CAAC;IAED;;;;OAIG;IACI,MAAM,CAAC,gBAAgB,CAAC,IAAY;QACzC,OAAO,YAAY,IAAI,uCAAuC,CAAC;IACjE,CAAC;CACF"}
