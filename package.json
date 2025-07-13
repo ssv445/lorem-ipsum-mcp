@@ -1,0 +1,38 @@
+{
+  "name": "mcp-server",
+  "module": "src/index.ts",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Model Context Protocol (MCP) Server",
+  "private": true,
+  "scripts": {
+    "start": "node --loader ts-node/esm src/index.ts",
+    "build": "tsc",
+    "dev": "node --loader ts-node/esm --watch src/index.ts",
+    "start:http": "node --loader ts-node/esm src/server/http-server.ts",
+    "dev:http": "node --loader ts-node/esm --watch src/server/http-server.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.11.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2",
+    "vitest": "^3.2.4"
+  },
+  "peerDependencies": {
+    "@valibot/to-json-schema": "^1.0.0",
+    "effect": "^3.14.4"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "fastmcp": "^1.21.0",
+    "zod": "^3.24.2"
+  }
+}
