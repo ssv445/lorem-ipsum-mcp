@@ -58,3 +58,7 @@ Thumbs.db
 .tmp/
 tmp/
 temp/
+
+# Test files
+test_mcp_client.js
+verify_server.js

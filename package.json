@@ -33,6 +33,7 @@
     "effect": "^3.14.4"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.15.1",
     "cors": "^2.8.5",
     "fastmcp": "^1.21.0",
     "zod": "^3.24.2"
