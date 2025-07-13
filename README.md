@@ -6,13 +6,13 @@ An lorem ipsum MCP server
 Install the package globally with npm:
 
 ```bash
-npm install -g mcp-server
+npm install -g lorem-ipsum-mcp
 ```
 
 Or run directly with npx:
 
 ```bash
-npx mcp-server
+npx lorem-ipsum-mcp
 ```
 
 ## Usage
@@ -21,10 +21,10 @@ The MCP server runs on stdio and is designed to be used as a Model Context Proto
 
 ```bash
 # Run directly if installed globally
-mcp-server
+lorem-ipsum-mcp
 
 # Run with npx (no installation required)
-npx mcp-server
+npx lorem-ipsum-mcp
 ```
 
 ## Available Tools
