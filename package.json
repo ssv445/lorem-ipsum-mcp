@@ -1,11 +1,11 @@
 {
-  "name": "mcp-server",
+  "name": "lorem-ipsum-image-mcp",
   "module": "src/index.ts",
   "type": "module",
   "version": "1.0.0",
   "description": "Model Context Protocol (MCP) Server",
   "bin": {
-    "mcp-server": "./dist/index.js"
+    "lorem-ipsum-image-mcp": "./dist/index.js"
   },
   "scripts": {
     "start": "node --loader ts-node/esm src/index.ts",
